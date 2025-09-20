@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;  
+class Node{
+    public:
+        Node* next;
+        int val; 
+        Node(){
+            next = nullptr;      
+            val = INT_MIN;
+        }
+        Node(int val){
+            next = nullptr;     
+            this->val = val;
+        }
+    };
+    void solve(Node* h1, Node* h2){
+        int h1c = 0, h2c = 0;
+        Node* temp1 = h1;         
+        Node* temp2 = h2;
+        while(temp1){
+            h1c++;
+            temp1 = temp1->next; 
+        }
+        while(temp2){
+            h2c++;
+            temp2 = temp2->next; 
+        }
+        if(h1c < h2c){             
+            Node* temp = h1;
+            h1 = h2;
+            h2 = temp;
+        }
+        int d = abs(h1c - h2c);  
+        for(int i = 0; i < d; i++)h1 = h1->next;
+        while(h1 && h2){
+            while(h1 == h2){
+                cout << h1->val << " ";
+            }
+            h1 = h1->next;
+            h2 = h2->next;
+        }
+    }
+    
